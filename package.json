@@ -1,6 +1,6 @@
 {
   "name": "myreddb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "myRedDB, easy bindings for the sqlite3 npm package.",
   "main": "index.js",
   "scripts": {
@@ -10,5 +10,8 @@
     "redhq"
   ],
   "author": "Itsredpro",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
 }
