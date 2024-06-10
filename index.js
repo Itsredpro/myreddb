@@ -42,7 +42,7 @@ class database {
     constructor(path){
         this._db = new sqlite3.Database(path);
 
-
+        this._pathx = path
         // catches ctrl+c event
         process.on('SIGINT', this._unload);
     }
@@ -56,10 +56,10 @@ class database {
     }
 
     async _load(){
-        console.log("Loading db...")
+        //console.log("Loading db...")
         return new Promise((r)=>{
             this._db.serialize(() => {
-                console.log("Loaded")
+                console.log("[myRedDB] => Database loaded - " + this._pathx)
                 r()
             })
         })
@@ -68,7 +68,7 @@ class database {
         if (this._db){
             this._db.close(()=>{
                 if (dontclose != undefined){
-                    console.log("Closes")
+                    //console.log("Closes")
                     process.exit(1)
                 }
             })
@@ -130,7 +130,7 @@ class database {
         })
     }
     async addColumn(table,columnName,dataType){
-        console.log("adding " + columnName)
+        //console.log("adding " + columnName)
         return new Promise(async (r)=>{
             const sqlquery = `ALTER TABLE ${table} ADD ${columnName} ${dataType}`
             this._db.run(sqlquery, (e)=>{r({succes:e === null, errormsg: e})})
